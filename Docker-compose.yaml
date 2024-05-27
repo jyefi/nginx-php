@@ -1,0 +1,30 @@
+services:
+  web:
+    image: nginx:stable-perl
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      # PHP scripts
+      - ./src:/var/www/html
+
+      # Nginx configuration
+      - ./config/default.conf:/etc/nginx/conf.d/default.conf
+
+      #log files
+      - ./log/error.log:/var/log/nginx/error.log
+      - ./log/access.log:/var/log/nginx/access.log
+
+      # SSL certificates
+      - ./ssl/fullchain.pem:/etc/nginx/conf.d/fullchain.pem
+      - ./ssl/options-ssl-nginx.conf:/etc/nginx/conf.d/options-ssl-nginx.conf
+      - ./ssl/privkey.pem:/etc/nginx/conf.d/privkey.pem
+      - ./ssl/ssl-dhparams.pem:/etc/nginx/conf.d/ssl-dhparams.pem
+    links:
+      - php-fpm
+
+  # Configuración de php-fpm
+  php-fpm:
+    image: php:8-fpm
+    volumes:
+      - ./src:/var/www/html
