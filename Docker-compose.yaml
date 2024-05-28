@@ -16,10 +16,10 @@ services:
       - ./log/access.log:/var/log/nginx/access.log
 
       # SSL certificates
-      - ./ssl/fullchain.pem:/etc/nginx/conf.d/fullchain.pem
-      - ./ssl/options-ssl-nginx.conf:/etc/nginx/conf.d/options-ssl-nginx.conf
-      - ./ssl/privkey.pem:/etc/nginx/conf.d/privkey.pem
-      - ./ssl/ssl-dhparams.pem:/etc/nginx/conf.d/ssl-dhparams.pem
+      # - ./ssl/fullchain.pem:/etc/nginx/conf.d/fullchain.pem
+      # - ./ssl/options-ssl-nginx.conf:/etc/nginx/conf.d/options-ssl-nginx.conf
+      # - ./ssl/privkey.pem:/etc/nginx/conf.d/privkey.pem
+      # - ./ssl/ssl-dhparams.pem:/etc/nginx/conf.d/ssl-dhparams.pem
     links:
       - php-fpm
 
